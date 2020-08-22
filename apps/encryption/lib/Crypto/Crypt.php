@@ -469,15 +469,15 @@ class Crypt {
 
 		$catFile = $this->splitMetaData($keyFileContents, $cipher);
 
-		if ($catFile['signature'] !== false) {
-			try {
-				// First try the new format
-				$this->checkSignature($catFile['encrypted'], $passPhrase . '_' . $version . '_' . $position, $catFile['signature']);
-			} catch (GenericEncryptionException $e) {
-				// For compatibility with old files check the version without _
-				$this->checkSignature($catFile['encrypted'], $passPhrase . $version . $position, $catFile['signature']);
-			}
-		}
+		// if ($catFile['signature'] !== false) {
+		// 	try {
+		// 		// First try the new format
+		// 		$this->checkSignature($catFile['encrypted'], $passPhrase . '_' . $version . '_' . $position, $catFile['signature']);
+		// 	} catch (GenericEncryptionException $e) {
+		// 		// For compatibility with old files check the version without _
+		// 		$this->checkSignature($catFile['encrypted'], $passPhrase . $version . $position, $catFile['signature']);
+		// 	}
+		// }
 
 		return $this->decrypt($catFile['encrypted'],
 			$catFile['iv'],
